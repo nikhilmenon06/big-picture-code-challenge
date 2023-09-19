@@ -1,5 +1,7 @@
 # Big Picture Coding Challenge - Backend - Book Library API
 
+To work on this challenge, please create a fork of it to your own github account
+
 Our colleagues have amassed an impressive collection of books, leading to quite the bill and an unhappy boss. To keep things organized and to provide transparency into our library, we've decided to step in and help with software. Our solution: a sleek website where our intern can easily record books by their ISBN number, pulling in detailed information via an API.
 
 **Your mission**: Build the backend to power this application.
@@ -48,7 +50,5 @@ Our colleagues have amassed an impressive collection of books, leading to quite 
 ## Documentation:
 
 Please ensure that you document your code adequately. Proper commenting will not only help you in future modifications but will also assist any other developer who might be working with your code.
-
-Please create a fork of this repositiry and then work on it.
 
 Good luck, and may your code run without bugs!
