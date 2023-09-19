@@ -49,6 +49,6 @@ Our colleagues have amassed an impressive collection of books, leading to quite 
 
 Please ensure that you document your code adequately. Proper commenting will not only help you in future modifications but will also assist any other developer who might be working with your code.
 
-Please create a new branch for your code. Do not add anything to the Master branch.
+Please create a fork of this repositiry and then work on it.
 
 Good luck, and may your code run without bugs!
