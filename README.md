@@ -17,7 +17,7 @@ Our colleagues have amassed an impressive collection of books, leading to quite 
 ### Technology:
 
 - Python (Any backend framework of your choice. E.g., Flask, Django, FastAPI, etc.)
-- Database: Feel free to choose what you're comfortable with (SQLite, PostgreSQL, MongoDB, etc.)
+- ORM + Database: Feel free to choose what you're comfortable with (SQLite, PostgreSQL, MongoDB, etc.)
 
 ### Features:
 
@@ -50,5 +50,8 @@ Our colleagues have amassed an impressive collection of books, leading to quite 
 ## Documentation:
 
 Please ensure that you document your code adequately. Proper commenting will not only help you in future modifications but will also assist any other developer who might be working with your code.
+
+## Installation
+*Please tell us how to get your code running. Do we need to install anything? Is there a database we need to create? Please provide all necessary instructions. After following these instructions the code should run!*
 
 Good luck, and may your code run without bugs!
