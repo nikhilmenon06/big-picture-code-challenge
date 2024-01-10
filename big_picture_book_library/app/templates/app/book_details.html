@@ -1,0 +1,164 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Picture Book Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&family=Oswald:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'app/css/all.min.css' %}"> <!-- fontawesome -->
+<!-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{% static 'app/css/tailwind.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/tooplate-antique-cafe.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/index.css' %}">
+</head>
+<body>   
+    
+    <!-- Intro -->
+    <div id="intro" class="parallax-window" data-parallax="scroll" data-image-src="{% static 'app/img/book_library_index.jpeg' %}">      
+        <div class="container mx-auto px-1 max-w-2xl">
+            
+            <div class="p-10 text-center">
+                <div class="rotating-container">
+                    <img src="{% static 'app/img/Big_Picture_logo.jpeg' %}" alt="Rotating Image" class="rotating-cube"">
+                </div>
+            </div>
+
+            <div class="bg-black bg-opacity-70 p-10 mb-5 mx-auto text-center">
+                <h1 class="text-white text-5xl tm-logo-font mb-5">Big Picture Books Database</h1>
+            </div>
+            
+            <div class="">
+                {% if error %}
+                    <div class="bg-black bg-opacity-70 p-10 mb-5 text-center">
+                        <p class="text-white leading-8 text-sm font-light">
+                            Sorry. The data for the book is not available currently.
+                        </p>
+                    </div>
+
+
+                {% else %}       
+                    <div class="container">
+                        <div class="bg-black bg-opacity-70 p-10 mb-5 text-center">
+                            <h1 class="text-white text-5xl tm-logo-font mb-5 uppercase" style="font-family: 'Baskerville', serif;">{{ title }}</h1>
+                        </div>
+                        
+                        <div class="bg-black bg-opacity-70 p-12 mb-5" style="display: flex; align-items: flex-start; text-align: left;">
+                            <div class="box2">
+                                 <img src="{{ cover_page_url }}" alt="Book Cover" class="rounded-md" style="width: 300px; height: 400px; margin-right: 20px;">
+                            </div>
+                            <div>
+                                <p class="text-white font-semibold tm-text-2xl" style="font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;">
+                                    Below are the books details :
+                                    </br>
+                                    </br>
+                                    {{ title }}
+                                    </br>
+                                    </br>
+                                    {{ author }}
+                                    </br>
+                                    ISBN :  {{ isbn }} 
+                                    </br>
+                                    Publisher :  {{ publisher }}
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="container">     
+                        <div class="bg-black bg-opacity-50 p-12 mb-5 text-center">
+
+                            <div class="inline-block">
+                                <form method="post" action = "{% url 'app:add_book_to_library' %}"<div class="flex flex-col items-center w-full">
+                                    {% csrf_token %}
+                                    <button type="submit" class="bg-black bg-opacity-70  rounded-lg font-semibold tm-text-2xl tm-text-gold hover:text-gray-200 transition">
+                                        <i class="fas fa-book mr-3"></i>
+                                        <span>Add book to library</span>
+                                    </button>
+                                </form>
+                            </div>
+
+                        </div>
+                      
+                    </div>
+                {% endif %}  
+                
+                <div class="bg-black bg-opacity-70 p-10 mb-5 text-center">
+                    <a href="{% url 'app:index' %}" class="text-decoration-none">
+                        <button class="bg-black bg-opacity-20 rounded-lg font-semibold tm-text-2xl tm-text-gold hover:text-gray-200 transition">
+                            <span>Back to Homepage</span>
+                        </button>
+                    </a>
+                </div> 
+            </div>
+        </div> 
+
+
+    </div>
+     
+
+    <script src="{% static 'app/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'app/js/parallax.min.js' %}"></script>
+    <script src="{% static 'app/js/jquery.singlePageNav.min.js' %}"></script>    
+    <script>
+
+        function checkAndShowHideMenu() {
+            if(window.innerWidth < 768) {
+                $('#tm-nav ul').addClass('hidden');                
+            } else {
+                $('#tm-nav ul').removeClass('hidden');
+            }
+        }
+
+        $(function(){
+            var tmNav = $('#tm-nav');
+            tmNav.singlePageNav();
+
+            checkAndShowHideMenu();
+            window.addEventListener('resize', checkAndShowHideMenu);
+
+            $('#menu-toggle').click(function(){
+                $('#tm-nav ul').toggleClass('hidden');
+            });
+
+            $('#tm-nav ul li').click(function(){
+                if(window.innerWidth < 768) {
+                    $('#tm-nav ul').addClass('hidden');
+                }                
+            });
+
+            $(document).scroll(function() {
+                var distanceFromTop = $(document).scrollTop();
+
+                if(distanceFromTop > 100) {
+                    tmNav.addClass('scroll');
+                } else {
+                    tmNav.removeClass('scroll');
+                }
+            });
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

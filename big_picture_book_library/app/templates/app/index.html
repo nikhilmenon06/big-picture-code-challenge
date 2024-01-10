@@ -1,0 +1,245 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Picture Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600&family=Oswald:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'app/css/all.min.css' %}"> <!-- fontawesome -->
+<!-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{% static 'app/css/tailwind.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/tooplate-antique-cafe.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/index.css' %}">
+
+</head>
+<body>    
+    <!-- Intro -->
+    <div id="intro" class="parallax-window" data-parallax="scroll" data-image-src="{% static 'app/img/book_library_index.jpeg' %}">
+        <nav id="tm-nav" class="fixed w-full">
+            <div class="tm-container mx-auto px-2 md:py-6 text-right">
+                <button class="md:hidden py-2 px-2" id="menu-toggle"><i class="fas fa-2x fa-bars tm-text-gold"></i></button>
+                <ul class="mb-3 md:mb-0 text-2xl font-normal flex justify-end flex-col md:flex-row">
+                    <li class="inline-block mb-4 mx-4"><a href="#intro" class="tm-text-gold py-1 md:py-3 px-4">Home</a></li>
+                    <li class="inline-block mb-4 mx-4"><a href="#menu" class="tm-text-gold py-1 md:py-3 px-4">All Books</a></li>
+                    <li class="inline-block mb-4 mx-4"><a href="#contact" class="tm-text-gold py-1 md:py-3 px-4">Contact</a></li>
+                </ul>
+            </div>            
+        </nav>   
+        <div class="container mx-auto px-2 max-w-4xl">
+            <div class="sm:pb-30 sm:pt-30 py-20">
+
+                <div class="bg-black bg-opacity-50 p-12 mb-5 text-center flex flex-col items-center">
+                    <div class="rotating-container">
+                        <img src="{% static 'app/img/Big_Picture_logo.jpeg' %}" alt="Rotating Image" class="rotating-cube"">
+                    </div>
+                    <h1 class="text-white text-5xl tm-logo-font mb-5">Big Picture Books Database</h1>
+                    <p class="tm-text-gold font-semibold tm-text-2xl" style="font-family: 'Lato', sans-serif;">A Database for Books Information. Your Comprehensive Resource for Querying and Organising Books.</p>
+                </div>
+                
+                <div class="bg-black bg-opacity-70 p-10 mb-5 flex justify-center items-center">
+                    <div class="text-center">
+                        <p class="text-white leading-8 text-sm font-light" style="font-family: 'Lato', sans-serif;">
+                            Embark on a Journey of Literary Exploration!
+                            </br>
+                            Unlock the world of books you desire by entering the ISBN number of any book. Discover comprehensive details and delve into the rich tapestry of information. Your gateway to a treasure trove of knowledge awaits – explore with ease!
+                        </p>
+                    </div>
+                </div>
+                
+                   
+                <div class="bg-black bg-opacity-50 p-12 mb-5 text-center">
+                    <div class="inline-block">
+                        <form method="post" class="flex flex-col items-center w-full" autocomplete="off" onsubmit="return validateISBN()">
+                            {% csrf_token %}
+                            
+                            <!-- Add your form fields here -->
+                            <label for="search_query" class="sr-only">Search Query:</label>
+                            <input type="text" id="search_query" name="search_query" class="bg-black bg-opacity-70 py-6 px-12 rounded-lg font-semibold tm-text-white" placeholder="Enter the ISBN Number" required style="color: yellow; margin-bottom: 30px;">
+                    
+                            <!-- Display validation message -->
+                            <p id="isbn-validation-message" style="color: red;"></p>
+                            <br>
+                            <button type="submit" class="bg-black bg-opacity-70 py-5 px-8 rounded-lg font-semibold tm-text-2xl tm-text-gold hover:text-gray-200 transition">
+                                <i class="fas fa-book mr-3"></i>
+                                <span>Get the details of the book</span>
+                            </button>
+                        </form>
+                    </div>
+                </div> 
+                               
+            </div>
+        </div> 
+
+
+    </div>
+    <!-- Cafe Menu -->
+    <div class="bg-black bg-opacity-70 p-8 text-center">
+        <h1 class="text-white text-3xl tm-logo-font mb-3" style="font-family: 'Lato', sans-serif;">All Books added to Library</h1>
+    </div>
+
+
+    <div id="menu" class="" data-parallax="scroll" data-image-src="{% static 'app/img/antique-cafe-bg-02.jpg' %}">                 
+            <div class="shelf-container">
+
+                <div class="shelf">
+                    <div class="flex-1 m-5 rounded-xl px-4 py-6 sm:px-8 sm:py-10 tm-bg-brown tm-item-container">
+                        {% for book in books %}
+                            {% if book.pk|divisibleby:2 %}
+                                <div class="flex items-start mb-6 tm-menu-item">
+                                    <a href="{{ book.pk }}" class="box2">
+                                        <img src="{{ book.cover_page_url }}" alt="Image" style="width: 160px; height: 210px;">
+                                    </a>
+                                    
+                                    <div class="ml-3 sm:ml-6">
+                                        <br>
+                                        <br>
+                                        <h3 class="text-lg sm:text-xl mb-2 sm:mb-3 tm-text-yellow" style="font-family: 'Open Sans', sans-serif;">{{ book.title }}</h3>
+                                        <div class="text-white text-md sm:text-lg font-light mb-1"style="font-family: 'Lato', sans-serif;">{{ book.author }}</div>
+                                        <div class="text-white text-md sm:text-lg font-light" style="font-family: 'Lato', sans-serif;">ISBN : {{ book.isbn }}   
+                                        </div>
+                                    </div>                    
+                                </div>
+                            {% endif%}
+                        {% endfor %}
+                        
+                    </div>    
+                </div>
+
+                <div class="shelf">
+                    <div class="flex-1 m-5 rounded-xl px-4 py-6 sm:px-8 sm:py-10 tm-bg-brown tm-item-container">
+                        {% for book in books %}
+                            {% if not book.pk|divisibleby:2 %}
+                            <div class="flex items-start mb-6 tm-menu-item">
+                                <a href="{{ book.pk }}" class="box2">
+                                    <img src="{{ book.cover_page_url }}" alt="Image" style="width: 160px; height: 210px;">
+                                </a>
+                                <div class="ml-3 sm:ml-6">
+                                <br>
+                                <br>
+                                    <h3 class="text-lg sm:text-xl mb-2 sm:mb-3 tm-text-yellow" style="font-family: 'Open Sans', sans-serif;">{{ book.title }}</h3>
+
+                                    <div class="text-white text-md sm:text-lg font-light mb-1" style="font-family: 'Lato', sans-serif;">{{ book.author }}</div>
+                                    <div class="text-white text-md sm:text-lg font-light">ISBN : {{ book.isbn }}
+                                    </div>
+                                </div> 
+                                                   
+                            </div>
+                        
+
+                            {% endif%}
+                        {% endfor %}
+                        
+                    </div>    
+                </div>
+
+                
+            </div> 
+    </div>
+
+    <div class="bg-black bg-opacity-70 p-8 text-center">
+        <h1 class="text-white text-3xl tm-logo-font mb-3" style="font-family: 'Lato', sans-serif;">Join us if you are a bibliophile !</h1>
+    </div>
+
+
+    <div id="contact" class="parallax-window relative" data-parallax="scroll" data-image-src="">
+        <div class="flex flex-col lg:flex-row justify-around items-center lg:items-stretch">
+            <div class="flex-1 rounded-xl px-10 py-12 m-5 bg-white bg-opacity-80 tm-item-container">
+                <h2 class="text-3xl mb-6 tm-text-green" style="font-family: 'Lato', sans-serif;">Contact Us</h2>
+                <p class="mb-6 text-lg leading-8">
+                    Big Picture GmBH   
+                </p>
+                <p class="mb-10 text-lg">
+                    <span class="block">Our website: <a href="https://big-picture.com" class="hover:text-yellow-600 transition">big-picture.com</a></span>                        
+                </p>
+                <div class="text-center">
+                    <a href="https://www.google.com/maps/place/BIG+PICTURE+GmbH/@52.5062376,13.4311511,17z/data=!3m2!4b1!5s0x47a84e485d5e3f83:0x75c5333cc6fdab6a!4m6!3m5!1s0x47a84e243cf1c0a7:0x7c025d146b6d0d1d!8m2!3d52.5062344!4d13.433726!16s%2Fg%2F1tk6zj72?entry=ttu" class="inline-block text-white text-2xl pl-10 pr-12 py-6 rounded-lg transition tm-bg-green">
+                        <i class="fas fa-map-marked-alt mr-8"></i>
+                        See us on maps
+                    </a>
+
+                    
+                </div>                    
+            </div>
+        </div>  
+        <footer class="absolute bottom-0 left-0 w-full">
+            <div class="text-white container mx-auto tm-container p-8 text-lg flex flex-col md:flex-row justify-between">
+                <span>&copy; Copyright 2024 Big Picture Books Database.</span>
+            </div>                
+        </footer>     
+    </div>  
+   
+    <script src="{% static 'app/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'app/js/parallax.min.js' %}"></script>
+    <script src="{% static 'app/js/jquery.singlePageNav.min.js' %}"></script>    
+    <script>
+
+        function checkAndShowHideMenu() {
+            if(window.innerWidth < 768) {
+                $('#tm-nav ul').addClass('hidden');                
+            } else {
+                $('#tm-nav ul').removeClass('hidden');
+            }
+        }
+
+        $(function(){
+            var tmNav = $('#tm-nav');
+            tmNav.singlePageNav();
+
+            checkAndShowHideMenu();
+            window.addEventListener('resize', checkAndShowHideMenu);
+
+            $('#menu-toggle').click(function(){
+                $('#tm-nav ul').toggleClass('hidden');
+            });
+
+            $('#tm-nav ul li').click(function(){
+                if(window.innerWidth < 768) {
+                    $('#tm-nav ul').addClass('hidden');
+                }                
+            });
+
+            $(document).scroll(function() {
+                var distanceFromTop = $(document).scrollTop();
+
+                if(distanceFromTop > 100) {
+                    tmNav.addClass('scroll');
+                } else {
+                    tmNav.removeClass('scroll');
+                }
+            });
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+    <script>
+        function validateISBN() {
+            var isbnInput = document.getElementById('search_query').value;
+            var isbnValidationMessage = document.getElementById('isbn-validation-message');
+    
+            // Regular expressions for validating ISBN
+            var isbn10Pattern = /^\d{10}$/;
+            var isbn13Pattern = /^\d{13}$/;
+    
+            if (!isbn10Pattern.test(isbnInput) && !isbn13Pattern.test(isbnInput)) {
+                isbnValidationMessage.textContent = 'ISBN should be valid and must be 10 or 13 digits. It should consists only digits. No dashes or underscores.';
+                return false; // Prevent form submission
+            }
+    
+            // Clear the validation message if ISBN is valid
+            isbnValidationMessage.textContent = '';
+            return true; // Allow form submission
+        }
+    </script>
+</body>
+</html>
