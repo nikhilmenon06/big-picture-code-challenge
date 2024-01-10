@@ -8,7 +8,7 @@ The Big Picture Books Database is a Django web application that manages informat
 
 ## Table of Contents
 
-- [Purpose](#tech-stack)
+- [Requirements Specification](#tech-stack)
 - [Tech Stack](#purpose)
 - [How Errors ared Handled](#error-handling)
 
@@ -27,18 +27,18 @@ The Big Picture Books Database is a Django web application that manages informat
 - [Testing](#testing)
 - Note
 
-## Purpose
+## Requirements Specification
 
-The purpose of the Big Picture Books Database is to provide a platform for managing and retrieving information about books. It includes both a user-friendly front-end for interacting with the application and a REST API for programmatic access to book data from back-end. This makes it versatile and suitable for a range of use cases, from personal book tracking to integration with other systems.
+The objective is to develop a back-end application capable of retrieving book information from third-party APIs and storing it in our local database. The Big Picture Books Database serves as a comprehensive platform for managing and accessing book-related data. It encompasses a user-friendly front-end, facilitating interactive use, and a REST API, enabling programmatic access to book data from the back-end. This versatility makes it suitable for various use cases, ranging from personal book tracking to seamless integration with other systems.
 
 ## Tech Stack
 
--**Django**:   Web framework for building the back-end.
--**Django REST Framework**:  Toolkit for building Web APIs.
--**DRF-YASG**:  Yet Another Swagger Generator for generating Swagger/OpenAPI documentation.
--**Swagger UI**:  Interactive API documentation.
--**HTML, CSS, JavaScript**:  Used for the front-end user interface.
--**SQLite**:   Default database used for development.
+- **Django**:   Web framework for building the back-end.
+- **Django REST Framework**:  Toolkit for building Web APIs.
+- **DRF-YASG**:  Yet Another Swagger Generator for generating Swagger/OpenAPI documentation.
+- **Swagger UI**:  Interactive API documentation.
+- **HTML, CSS, JavaScript**:  Used for the front-end user interface.
+- **SQLite**:   Default database used for development.
 
 ## How Errors are Handled
 
@@ -107,7 +107,7 @@ The Swagger documentation for the API provides detailed information about each e
 
 ## Running the Application
 
-### Django Front-end App
+### Django Front-end App (Front-end/clide side application)
 
 1. Start the Django development server:
 
@@ -119,7 +119,7 @@ python manage.py runserver
 
    [http://127.0.0.1:8000/]()
 
-### REST API App with Swagger
+### REST API App with Swagger (Back-end/server-side application)
 
 1. Start the Django development server for the API:
 
