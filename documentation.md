@@ -25,6 +25,7 @@ The Big Picture Books Database is a Django web application that manages informat
   - [Django Front-end App](#django-front-end-app)
   - [REST API App with Swagger](#rest-api-app-with-swagger)
 - [Testing](#testing)
+- Note
 
 ## Purpose
 
@@ -80,12 +81,12 @@ The Swagger documentation for the API provides detailed information about each e
 1. Clone the repository
 
    ```bash
-   git clone https://github.com/your-username/big-picture-books-database.git
+   git clone https://github.com/rahulbhoyar1995/big-picture-code-challenge.git
    ```
 2. Navigating to Directory
 
 ```bash
-    cd big-picture-books-database
+    cd big-picture-code-challenge/big_picture_book_library
 ```
 
 3. Install dependencies
@@ -131,9 +132,6 @@ python manage.py runserver
 [
     http://127.0.0.1:8000/swagger/]()
 
-    or
-
-    [http://127.0.0.1:8000/swagger(?`<format>`.json|.yaml)]()
 
 ## Testing
 
@@ -142,3 +140,12 @@ Run the tests using the following command:
 ```bash
 python manage.py test
 ```
+
+
+## Note
+
+Please let me know if any modification or improvement is needed.
+
+Rahul Bhoyar
+
+rahulbhoyaroffice@gmail.com
